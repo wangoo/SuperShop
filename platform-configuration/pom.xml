@@ -8,7 +8,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.wangoo</groupId>
     <artifactId>supershop-config</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>platform-configuration</name>

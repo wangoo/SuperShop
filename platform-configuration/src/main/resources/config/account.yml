@@ -1,10 +1,26 @@
-server:
-  port: 8161
 eureka:
-  instance:
-    hostname: localhost
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/abc/
+      defaultZone: http://localhost:8161/abc/
+
+database: hsqldb
+
+spring:
+  datasource:
+    schema: "classpath:db/${database}/schema.sql"
+    data: "classpath:db/${database}/data.sql"
+    sql-script-encoding: UTF-8
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  resources:
+    chain:
+      compressed: true
+      cache: true
+    cache:
+      period: 86400
+
+server:
+  port: 1001
