@@ -1,0 +1,30 @@
+eureka:
+  client:
+    enabled: false
+
+database: hsqldb
+
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  sql:
+    init:
+      schema-locations: "classpath:db/${database}/schema.sql"
+      data-locations: "classpath:db/${database}/data.sql"
+      encoding: UTF-8
+  web:
+    resources:
+      cache:
+        period: 86400
+      chain:
+        compressed: true
+        cache: true
+
+logging:
+  pattern:
+    console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(-){faint} %clr([%t]){faint} %clr(%-40logger{39}){cyan}[%line]%clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  level:
+    root: INFO
