@@ -17,5 +17,7 @@ public class AccountApplicationService {
     public Account findAccountByUsername(String username) {
         return repository.findByUsername(username);
     }
-
+    public Iterable<Account> findAll() {
+        return repository.findAll();
+    }
 }
