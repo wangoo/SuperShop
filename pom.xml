@@ -24,6 +24,7 @@
         <module>library-infrastructure</module>
         <module>platform-configuration</module>
         <module>platform-registy</module>
+        <module>platform-gateway</module>
         <module>domain-account</module>
     </modules>
     <dependencies>
