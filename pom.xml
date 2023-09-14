@@ -25,6 +25,7 @@
         <module>platform-configuration</module>
         <module>platform-registy</module>
         <module>platform-gateway</module>
+        <module>platform-security</module>
         <module>domain-account</module>
     </modules>
     <dependencies>
