@@ -23,11 +23,29 @@ spring:
       chain:
         compressed: true
         cache: true
+  security:
+    oauth2:
+      client:
+        registration:
+          account:
+            client-id: account
+            client-secret: account_secret
+            authorization-grant-type: client_credentials
+            scope: SERVICE
+        provider:
+          account:
+            authorization-uri: https://localhost:1001/oauth2/v1/authorize
+            token-uri: https://localhost:1001/oauth2/v1/token
+
 server:
   port: 1001
+
+
+
+
 
 logging:
   pattern:
     console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(-){faint} %clr([%t]){faint} %clr(%-40logger{39}){cyan}[%line]%clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
   level:
-    root: info
+    root: debug

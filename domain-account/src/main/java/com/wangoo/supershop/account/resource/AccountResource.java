@@ -7,6 +7,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,6 +23,7 @@ public class AccountResource {
      */
     @GetMapping(path = "/{username}")
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('SCOPE_SERVICE')")
     public Account getUser(@PathVariable("username") String username) {
         return service.findAccountByUsername(username);
     }
@@ -29,6 +31,7 @@ public class AccountResource {
 
     @GetMapping
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('SCOPE_SERVICE')")
     public Iterable<Account> findAll() {
         Iterable<Account> result = service.findAll();
         System.out.println(result.toString());
