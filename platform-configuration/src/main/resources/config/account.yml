@@ -28,15 +28,18 @@ spring:
       client:
         registration:
           account:
+            provider: spring
             client-id: account
-            client-secret: account_secret
+            client-secret: account-secret
+            client-authentication-method: private_key_jwt
             authorization-grant-type: client_credentials
             scope: SERVICE
         provider:
-          account:
-            authorization-uri: https://localhost:1001/oauth2/v1/authorize
-            token-uri: https://localhost:1001/oauth2/v1/token
-
+          spring:
+            issuer-uri: http://localhost:9001
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:9001/issuer
 server:
   port: 1001
 
@@ -48,4 +51,4 @@ logging:
   pattern:
     console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(-){faint} %clr([%t]){faint} %clr(%-40logger{39}){cyan}[%line]%clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
   level:
-    root: debug
+    root: trace

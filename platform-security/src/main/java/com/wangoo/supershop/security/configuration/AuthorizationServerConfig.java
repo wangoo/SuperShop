@@ -51,6 +51,7 @@ public class AuthorizationServerConfig {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
 
         http.getConfigurer(OAuth2AuthorizationServerConfigurer.class);
+
         http.oauth2ResourceServer((resourceServer) -> resourceServer
                         .jwt(Customizer.withDefaults()));
 
@@ -68,7 +69,9 @@ public class AuthorizationServerConfig {
         http.authorizeHttpRequests((authorize) -> authorize
                         .anyRequest().authenticated()
                 );
-
+        http.csrf(csrf->{
+            csrf.disable();
+        });
         return http.build();
     }
 
@@ -91,10 +94,10 @@ public class AuthorizationServerConfig {
 
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
-        RegisteredClient accountClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient accountClient = RegisteredClient.withId("account")
                 .clientId("account")
-                .clientSecret("account-secret")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+                .clientSecret("{noop}account-secret")
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .scope("SERVICE")
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())

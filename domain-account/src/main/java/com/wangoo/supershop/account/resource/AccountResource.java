@@ -23,7 +23,7 @@ public class AccountResource {
      */
     @GetMapping(path = "/{username}")
     @ResponseBody
-    @PreAuthorize("hasAnyAuthority('SCOPE_SERVICE')")
+    @PreAuthorize("hasAuthority('SCOPE_SERVICE')")
     public Account getUser(@PathVariable("username") String username) {
         return service.findAccountByUsername(username);
     }
@@ -31,7 +31,7 @@ public class AccountResource {
 
     @GetMapping
     @ResponseBody
-    @PreAuthorize("hasAnyAuthority('SCOPE_SERVICE')")
+    @PreAuthorize("hasAuthority('SCOPE_SERVICE')")
     public Iterable<Account> findAll() {
         Iterable<Account> result = service.findAll();
         System.out.println(result.toString());
