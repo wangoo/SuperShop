@@ -3,4 +3,6 @@ spring:
     name: account
   config:
     import: "optional:configserver:http://localhost:8888/"
-
+  cache:
+    redis:
+      time-to-live: "10m"

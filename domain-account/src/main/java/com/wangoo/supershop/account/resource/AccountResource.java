@@ -6,12 +6,14 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/accounts")
+@CacheConfig(cacheNames = "resource.account")
 public class AccountResource {
 
 
@@ -23,6 +25,7 @@ public class AccountResource {
      */
     @GetMapping(path = "/{username}")
     @ResponseBody
+    @Cacheable(key = "#username")
     @PreAuthorize("hasAuthority('SCOPE_SERVICE')")
     public Account getUser(@PathVariable("username") String username) {
         return service.findAccountByUsername(username);
