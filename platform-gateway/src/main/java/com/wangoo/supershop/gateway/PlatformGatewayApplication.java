@@ -8,9 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = {"com.wangoo.supershop"})
 public class PlatformGatewayApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(PlatformGatewayApplication.class, args);
     }
-
 }
