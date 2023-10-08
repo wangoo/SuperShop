@@ -3,9 +3,6 @@ package com.wangoo.supershop.account.resource;
 import com.wangoo.supershop.account.application.AccountApplicationService;
 import com.wangoo.supershop.domain.account.Account;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import org.redisson.api.RedissonClient;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,7 +33,6 @@ public class AccountResource {
     @Cacheable(key = "#username")
     @PreAuthorize("hasAuthority('SCOPE_SERVICE')")
     public Account getUser(@PathVariable("username") String username) {
-
         return service.findAccountByUsername(username);
     }
 
@@ -52,7 +48,6 @@ public class AccountResource {
     @ResponseBody
     @PreAuthorize("hasAuthority('SCOPE_SERVICE')")
     public Account getUserRedisson(@PathVariable("username") String username) {
-
         return (Account)redissonClient.getMap(username);
     }
 
